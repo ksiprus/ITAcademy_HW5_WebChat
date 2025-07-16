@@ -37,28 +37,6 @@ public class Message {
         return sentAt;
     }
 
-
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setSenderId(int senderId) {
-        this.senderId = senderId;
-    }
-
-    public void setReceiverId(int receiverId) {
-        this.receiverId = receiverId;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public void setSentAt(LocalDateTime sentAt) {
-        this.sentAt = sentAt;
-    }
-
     // Статический внутренний класс Builder
     public static class Builder {
         private int id;
@@ -67,32 +45,36 @@ public class Message {
         private String text;
         private LocalDateTime sentAt;
 
-        public Builder setId(int id) {
+        public Builder id(int id) {
             this.id = id;
             return this;
         }
 
-        public Builder setSenderId(int senderId) {
+        public Builder senderId(int senderId) {
             this.senderId = senderId;
             return this;
         }
 
-        public Builder setReceiverId(int receiverId) {
+        public Builder receiverId(int receiverId) {
             this.receiverId = receiverId;
             return this;
         }
 
-        public Builder setText(String text) {
+        public Builder text(String text) {
             this.text = text;
             return this;
         }
 
-        public Builder setSentAt(LocalDateTime sentAt) {
+        public Builder sentAt(LocalDateTime sentAt) {
             this.sentAt = sentAt;
             return this;
         }
 
         public Message build() {
+            // Валидация перед созданием объекта Message
+            if (senderId <= 0 || receiverId <= 0 || text == null || sentAt == null) {
+                throw new IllegalArgumentException("Invalid message parameters");
+            }
             return new Message(id, senderId, receiverId, text, sentAt);
         }
     }
