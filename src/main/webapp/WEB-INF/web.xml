@@ -1,0 +1,32 @@
+<!-- Для Jakarta EE (Tomcat 10+) -->
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+         https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+
+<display-name>WebChat</display-name>
+
+ <!-- &lt;!&ndash; Приветственная страница по умолчанию &ndash;&gt;
+  <welcome-file-list>
+    <welcome-file>ui/index.jsp</welcome-file>
+  </welcome-file-list>
+
+  &lt;!&ndash; Listener для подсчёта активных пользователей &ndash;&gt;
+  <listener>
+    <listener-class>ksiprus.listener.ActiveUserListener</listener-class>
+  </listener>
+
+  &lt;!&ndash; Глобальный фильтр кодировки &ndash;&gt;
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>ksiprus.filters.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+</web-app>
+-->

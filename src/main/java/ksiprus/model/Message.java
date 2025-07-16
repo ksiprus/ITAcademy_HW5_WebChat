@@ -9,7 +9,6 @@ public class Message {
     private String text;
     private LocalDateTime sentAt;
 
-    // Конструктор
     public Message(int id, int senderId, int receiverId, String text, LocalDateTime sentAt) {
         this.id = id;
         this.senderId = senderId;
@@ -18,7 +17,6 @@ public class Message {
         this.sentAt = sentAt;
     }
 
-    // Геттеры
     public int getId() {
         return id;
     }
@@ -39,7 +37,8 @@ public class Message {
         return sentAt;
     }
 
-    // Сеттеры (если необходимо)
+
+
     public void setId(int id) {
         this.id = id;
     }
