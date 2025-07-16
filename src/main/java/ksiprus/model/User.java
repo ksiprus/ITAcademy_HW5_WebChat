@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class User {
-    private int id;
+    private int userId;
     private String login;
     private String password;
     private String name;
@@ -14,7 +14,7 @@ public class User {
 
 
     private User(Builder builder) {
-        this.id = builder.id;
+        this.userId = builder.id;
         this.login = builder.login;
         this.password = builder.password;
         this.name = builder.name;
@@ -80,8 +80,8 @@ public class User {
     }
 
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
     public String getLogin() {
