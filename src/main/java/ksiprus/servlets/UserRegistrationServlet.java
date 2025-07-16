@@ -3,6 +3,7 @@ package ksiprus.servlets;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import ksiprus.service.UserService;
@@ -10,7 +11,7 @@ import ksiprus.service.UserService;
 import java.io.IOException;
 
 @WebServlet("/api/user")
-public class UserRegistrationServlet {
+public class UserRegistrationServlet extends HttpServlet {
     private final UserService service = new UserService();
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
