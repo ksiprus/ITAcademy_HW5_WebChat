@@ -23,9 +23,10 @@ public class UserRegistrationServlet extends HttpServlet {
 
         try {
             service.register(login, password, name, birthDate);
-            resp.sendRedirect(req.getContextPath() + "/signIn.jsp");
+            req.setAttribute("successMessage", "регистрация прошла успешно!");
+            req.getRequestDispatcher("ui/index.jsp").forward(req, resp);
         } catch (Exception e) {
-            req.setAttribute("Ошибка!", e.getMessage());
+            req.setAttribute("error message", "Ошибка!" + e.getMessage());
             req.getRequestDispatcher("ui/signUp.jsp").forward(req, resp);
 
         }

@@ -10,10 +10,11 @@ import ksiprus.service.UserService;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "api/login")
+@WebServlet(urlPatterns = "/api/login")
 public class LoginServlet extends HttpServlet {
     private final UserService service = new UserService();
 
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
@@ -21,14 +22,14 @@ public class LoginServlet extends HttpServlet {
         try {
             User user = service.login(login, password);
             req.getSession().setAttribute("user", user);
-            if ("Admin".equals(user.getRole())) {
-                resp.sendRedirect(req.getContextPath() + "ui/admin/statistics.jsp");
 
+            if ("Admin".equals(user.getRole())) {
+                req.getRequestDispatcher("/ui/admin/statistics.jsp").forward(req, resp);
             } else {
-                resp.sendRedirect(req.getContextPath() + "ui/user/message.jsp");
+                req.getRequestDispatcher("/ui/user/message.jsp").forward(req, resp);
             }
         } catch (Exception e) {
-            req.setAttribute("Ошибка авторизации!", e.getMessage());
+            req.setAttribute("errorMessage", "Ошибка авторизации: " + e.getMessage());
             req.getRequestDispatcher("/ui/signIn.jsp").forward(req, resp);
         }
     }
