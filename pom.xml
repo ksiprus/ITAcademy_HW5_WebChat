@@ -1,74 +1,63 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ksiprus</groupId>
-    <artifactId>HW4_WebChatApp</artifactId>
+    <artifactId>ITAcademy_HW5_WebChat</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>HW4_WebChatApp</name>
+    <name>ITAcademy_HW5_WebChat</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>21</maven.compiler.target>
         <maven.compiler.source>21</maven.compiler.source>
         <junit.version>5.11.0</junit.version>
-        <tomcat.home>/Library/Java/apache-tomcat-10.1.41</tomcat.home>
-        <maven.tomcat.url>http://localhost:8080/manager/text</maven.tomcat.url>
-        <maven.tomcat.server>TomcatServer8</maven.tomcat.server>
-        <maven.tomcat.path>/${project.build.finalName}</maven.tomcat.path>
     </properties>
-
     <dependencies>
+        <!-- PostgreSQL JDBC Driver -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.7.7</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+        <!-- c3p0 connection pool -->
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
             <version>0.11.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.7.7</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-servlet-api -->
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-servlet-api</artifactId>
-            <version>10.1.18</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
-        <dependency>
-            <groupId>jakarta.servlet.jsp.jstl</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-            <version>3.0.2</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
-        <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-            <version>3.0.1</version>
-        </dependency>
+        <!-- Jakarta Servlet API -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JSTL -->
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>3.0.2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>3.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JUnit Jupiter API (JUnit 5) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
-        <finalName>HW4_WebChatApp</finalName>
+        <finalName>ITAcademy_HW5_WebChat</finalName>
         <plugins>
+            <!-- Tomcat Maven Plugin (должен работать только с Tomcat 7/8, может не работать с Tomcat 10) -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -85,14 +74,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.4.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <skip>false</skip>
-                </configuration>
             </plugin>
         </plugins>
     </build>
