@@ -15,6 +15,7 @@ import java.sql.SQLException;
 public class MessageServlet extends HttpServlet {
     private final MessageService service = new MessageService();
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
         if (user == null) {
@@ -34,6 +35,7 @@ public class MessageServlet extends HttpServlet {
         req.getRequestDispatcher("/ui/user/chats.jsp").forward(req, resp);
     }
 
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
         if (user == null) {
@@ -53,6 +55,8 @@ public class MessageServlet extends HttpServlet {
 
         try {
             service.sendMessage(user.getLogin(), to, text);
+            // После отправки сообщения сразу показываем сообщения этим же способом
+            req.setAttribute("messages", service.getMessagesFor(user.getUserId()));
         } catch (SQLException e) {
             req.setAttribute("error", "Ошибка при отправке сообщения: " + e.getMessage());
             req.getRequestDispatcher("/ui/error.jsp").forward(req, resp);
@@ -63,6 +67,6 @@ public class MessageServlet extends HttpServlet {
             return;
         }
 
-        resp.sendRedirect(req.getContextPath() + "/ui/user/message.jsp");
+        req.getRequestDispatcher("/ui/user/message.jsp").forward(req, resp);
     }
 }
