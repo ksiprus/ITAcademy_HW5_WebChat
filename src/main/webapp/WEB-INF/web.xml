@@ -1,32 +1,39 @@
-<!-- Для Jakarta EE (Tomcat 10+) -->
+
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
          https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
 
+    <display-name>WebChat</display-name>
 
-<display-name>WebChat</display-name>
+    <!-- Приветственная страница по умолчанию -->
+    <welcome-file-list>
+        <welcome-file>ui/index.jsp</welcome-file>
+    </welcome-file-list>
 
- <!-- &lt;!&ndash; Приветственная страница по умолчанию &ndash;&gt;
-  <welcome-file-list>
-    <welcome-file>ui/index.jsp</welcome-file>
-  </welcome-file-list>
+    <!-- Listener для подсчёта активных пользователей -->
+    <listener>
+        <listener-class>ksiprus.listener.ActiveUserSessionListener</listener-class>
+    </listener>
 
-  &lt;!&ndash; Listener для подсчёта активных пользователей &ndash;&gt;
-  <listener>
-    <listener-class>ksiprus.listener.ActiveUserListener</listener-class>
-  </listener>
+    <!-- Глобальный фильтр кодировки -->
+    <filter>
+        <filter-name>AdminSecurityFilter</filter-name>
+        <filter-class>ksiprus.filters.AdminSecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminSecurityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-  &lt;!&ndash; Глобальный фильтр кодировки &ndash;&gt;
-  <filter>
-    <filter-name>EncodingFilter</filter-name>
-    <filter-class>ksiprus.filters.EncodingFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>EncodingFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+    <filter>
+        <filter-name>UserSecurityFilter</filter-name>
+        <filter-class>ksiprus.filters.UserSecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UserSecurityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>
--->

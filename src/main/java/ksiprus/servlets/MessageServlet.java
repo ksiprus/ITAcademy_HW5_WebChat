@@ -11,7 +11,7 @@ import ksiprus.service.MessageService;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/api/message")
+@WebServlet(urlPatterns = "/api/message")
 public class MessageServlet extends HttpServlet {
     private final MessageService service = new MessageService();
 
