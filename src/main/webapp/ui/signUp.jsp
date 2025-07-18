@@ -9,12 +9,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8"> <!-- Установка кодировки -->
+    <meta charset="UTF-8">
     <title>Регистрация</title>
 </head>
 <body>
 <h2>Регистрация пользователя</h2>
-<form method="POST" action="${pageContext.request.contextPath}/api/user">
+<form method="POST" action="${pageContext.request.contextPath}/ui/user">
     Логин: <input type="text" name="login" required><br>
     Пароль: <input type="password" name="password" required><br>
     ФИО: <input type="text" name="name" required><br>

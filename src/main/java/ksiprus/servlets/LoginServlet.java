@@ -10,7 +10,7 @@ import ksiprus.service.UserService;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/api/login")
+@WebServlet(urlPatterns = "/ui/login")
 public class LoginServlet extends HttpServlet {
     private final UserService service = new UserService();
 

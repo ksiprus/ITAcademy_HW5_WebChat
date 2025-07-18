@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserDao {
     public void save(User user) throws SQLException {
-        String sql = "INSERT INTO users (login, password, name, birth_date, reg_date, role) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO webchat.users (login, password, name, birth_date, reg_date, role) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DataSourceSingleton.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, user.getLogin());
@@ -23,7 +23,7 @@ public class UserDao {
     }
 
     public User findByLogin(String login) throws SQLException {
-        String sql = "SELECT * FROM users WHERE login = ?";
+        String sql = "SELECT * FROM webchat.users WHERE login = ?";
         try (Connection conn = DataSourceSingleton.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, login);
@@ -46,7 +46,7 @@ public class UserDao {
     // Метод для получения всех пользователей
     public List<User> findAll() throws SQLException {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM webchat.users";
         try (Connection conn = DataSourceSingleton.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -68,7 +68,7 @@ public class UserDao {
 
     // Метод для подсчета пользователей
     public int count() throws SQLException {
-        String sql = "SELECT COUNT(*) FROM users";
+        String sql = "SELECT COUNT(*) FROM webchat.users";
         try (Connection conn = DataSourceSingleton.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {

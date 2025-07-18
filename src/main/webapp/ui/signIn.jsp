@@ -14,7 +14,7 @@
 </head>
 <body>
 <h2>Вход в систему</h2>
-<form method="POST" action="${pageContext.request.contextPath}/api/login">
+<form method="POST" action="${pageContext.request.contextPath}/ui/login">
     Логин: <input type="text" name="login" required><br> <!-- Добавлен атрибут required -->
     Пароль: <input type="password" name="password" required><br> <!-- Добавлен атрибут required -->
     <input type="submit" value="Войти">

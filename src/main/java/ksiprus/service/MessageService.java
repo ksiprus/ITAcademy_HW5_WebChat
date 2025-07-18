@@ -12,14 +12,14 @@ import java.util.List;
 public class MessageService {
 
     private final MessageDao messageRepo = new MessageDao();
-    private final UserDao userRepo = new UserDao();
+    private final UserDao userDao = new UserDao();
 
     // Отправить сообщение от пользователя к другому пользователю по логинам
     public void sendMessage(String fromLogin, String toLogin, String text) throws Exception {
         // Найти отправителя
-        User sender = userRepo.findByLogin(fromLogin);
+        User sender = userDao.findByLogin(fromLogin);
         // Найти получателя
-        User receiver = userRepo.findByLogin(toLogin);
+        User receiver = userDao.findByLogin(toLogin);
 
         if (sender == null) {
             throw new Exception("Отправитель не найден!");

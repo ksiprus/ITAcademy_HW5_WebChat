@@ -73,7 +73,7 @@ public class Message {
         public Message build() {
             // Валидация перед созданием объекта Message
             if (senderId <= 0 || receiverId <= 0 || text == null || sentAt == null) {
-                throw new IllegalArgumentException("Invalid message parameters");
+                throw new IllegalArgumentException("Поля не могут быть пустыми");
             }
             return new Message(id, senderId, receiverId, text, sentAt);
         }

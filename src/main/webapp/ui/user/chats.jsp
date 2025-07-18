@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%--
   Created by IntelliJ IDEA.
   User: ksiprus
@@ -16,6 +17,6 @@
     <b>${msg.sentAt}</b> — <b>${msg.senderId}</b>: ${msg.text}
   </div>
 </c:forEach>
-<a href="message.jsp">Отправить сообщение</a>
+<a href="ui/user/message.jsp">Отправить сообщение</a>
 </body>
 </html>

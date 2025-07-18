@@ -9,7 +9,7 @@ import ksiprus.model.User;
 
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/ui/admin/*", "/api/admin/*"})
+@WebFilter(urlPatterns = {"/ui/admin/*"})
 public class AdminSecurityFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
             throws IOException, ServletException {
@@ -20,7 +20,7 @@ public class AdminSecurityFilter implements Filter {
         if (user != null && "Admin".equals(user.getRole())) {
             chain.doFilter(request, response);
         } else {
-            response.sendRedirect(request.getContextPath() + "/ui/signIn.jsp");
+           request.getRequestDispatcher("/ui/signIn.jsp").forward(request, response);
         }
     }
 }

@@ -11,7 +11,7 @@ public class MessageDao {
 
     // Сохранить сообщение в базе данных
     public void saveMessage(Message message) throws SQLException {
-        String sql = "INSERT INTO messages (sender_id, receiver_id, text, sent_at) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO webchat.messages (sender_id, receiver_id, text, sent_at) VALUES (?, ?, ?, ?)";
         try (Connection conn = DataSourceSingleton.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, message.getSenderId());
@@ -27,7 +27,7 @@ public class MessageDao {
     // Получить все сообщения, отправленные данному пользователю
     public List<Message> findByReceiverId(int userId) throws SQLException {
         List<Message> msgs = new ArrayList<>();
-        String sql = "SELECT * FROM messages WHERE receiver_id = ? ORDER BY sent_at DESC";
+        String sql = "SELECT * FROM webchat.messages WHERE receiver_id = ? ORDER BY sent_at DESC";
 
         try (Connection conn = DataSourceSingleton.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -48,7 +48,7 @@ public class MessageDao {
 
     // Получить общее количество сообщений
     public int countMessages() throws SQLException {
-        String sql = "SELECT COUNT(*) FROM messages";
+        String sql = "SELECT COUNT(*) FROM webchat.messages";
         try (Connection conn = DataSourceSingleton.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
