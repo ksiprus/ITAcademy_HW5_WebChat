@@ -47,7 +47,7 @@ public class MessageDao {
     }
 
     // Получить общее количество сообщений
-    public int countMessages() throws SQLException {
+    public static int countMessages() throws SQLException {
         String sql = "SELECT COUNT(*) FROM webchat.messages";
         try (Connection conn = DataSourceSingleton.getInstance().getConnection();
              Statement stmt = conn.createStatement();

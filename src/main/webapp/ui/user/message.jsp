@@ -18,11 +18,11 @@
     <div style="color: red;">${requestScope.error}</div>
 </c:if>
 
-<form method="POST" action="${pageContext.request.contextPath}/ui/user/message.jsp">
+<form method="POST" action="${pageContext.request.contextPath}/ui/user/message">
     Кому (логин): <input type="text" name="to" required><br>
     Текст: <textarea name="text" required></textarea><br>
     <input type="submit" value="Отправить">
 </form>
-<a href="${pageContext.request.contextPath}/ui/user/chats.jsp">Мои сообщения</a>
+<a href="${pageContext.request.contextPath}/ui/user/chats">Мои сообщения</a>
 </body>
 </html>

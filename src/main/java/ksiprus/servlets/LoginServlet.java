@@ -24,9 +24,9 @@ public class LoginServlet extends HttpServlet {
             req.getSession().setAttribute("user", user);
 
             if ("Admin".equals(user.getRole())) {
-                req.getRequestDispatcher("/ui/admin/statistics.jsp").forward(req, resp);
+                resp.sendRedirect(req.getContextPath().concat("/ui/admin/statistics"));
             } else {
-                req.getRequestDispatcher("/ui/user/message.jsp").forward(req, resp);
+                resp.sendRedirect(req.getContextPath().concat("/ui/message"));
             }
         } catch (Exception e) {
             req.setAttribute("errorMessage", "Ошибка авторизации: " + e.getMessage());

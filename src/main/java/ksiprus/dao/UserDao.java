@@ -67,7 +67,7 @@ public class UserDao {
     }
 
     // Метод для подсчета пользователей
-    public int count() throws SQLException {
+    public static int count() throws SQLException {
         String sql = "SELECT COUNT(*) FROM webchat.users";
         try (Connection conn = DataSourceSingleton.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -78,4 +78,16 @@ public class UserDao {
         }
         return 0;
     }
+
+    // Проверка, существует ли пользователь с данным логином
+    public boolean existsByLogin(String login) throws SQLException {
+        String sql = "SELECT 1 FROM webchat.users WHERE login = ? LIMIT 1";
+        try (Connection conn = DataSourceSingleton.getInstance().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, login);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        }
+    }
+
 }

@@ -17,6 +17,6 @@
     <b>${msg.sentAt}</b> — <b>${msg.senderId}</b>: ${msg.text}
   </div>
 </c:forEach>
-<a href="ui/user/message.jsp">Отправить сообщение</a>
+<a href="/ui/user/message">Отправить сообщение</a>
 </body>
 </html>

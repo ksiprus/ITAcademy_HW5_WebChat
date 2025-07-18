@@ -1,11 +1,17 @@
 package ksiprus.listener;
 
+
+import ksiprus.dao.UserDao;
+import ksiprus.dao.MessageDao;
+
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.*;
 
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
 
 @WebListener
 public class ActiveUserSessionListener implements HttpSessionAttributeListener, HttpSessionListener {
@@ -13,21 +19,42 @@ public class ActiveUserSessionListener implements HttpSessionAttributeListener, 
 
     @Override
     public void attributeAdded(HttpSessionBindingEvent event) {
-        if (event.getName().equals("user")) {
+        if ("user".equals(event.getName())) {
             sessions.add(event.getSession());
         }
     }
+
+    @Override
+    public void attributeReplaced(HttpSessionBindingEvent event) {
+        if ("user".equals(event.getName())) {
+            sessions.add(event.getSession());
+        }
+    }
+
     @Override
     public void attributeRemoved(HttpSessionBindingEvent event) {
-        if (event.getName().equals("user")) {
+        if ("user".equals(event.getName())) {
             sessions.remove(event.getSession());
         }
     }
+
     @Override
     public void sessionDestroyed(HttpSessionEvent event) {
         sessions.remove(event.getSession());
     }
+
+
     public static int getActiveUserCount() {
         return sessions.size();
+    }
+
+
+    public static int getUserCount() throws SQLException {
+        return ksiprus.dao.UserDao.count();
+    }
+
+
+    public static int getMessageCount() throws SQLException {
+        return ksiprus.dao.MessageDao.countMessages();
     }
 }
