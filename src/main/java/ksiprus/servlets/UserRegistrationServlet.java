@@ -10,7 +10,7 @@ import ksiprus.service.UserService;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/ui/user")
+@WebServlet(urlPatterns = "/api/user")
 public class UserRegistrationServlet extends HttpServlet {
     private final UserService service = new UserService();
 
@@ -24,19 +24,17 @@ public class UserRegistrationServlet extends HttpServlet {
         try {
             UserDao userDao = new UserDao();
 
-            // Проверка, существует ли такой логин
+
             if (userDao.existsByLogin(login)) {
-                req.setAttribute("error", "Пользователь с таким логином уже существует!");
-                req.getRequestDispatcher("/ui/register.jsp").forward(req, resp);
+                resp.sendRedirect(req.getContextPath().concat("/go/signUp"));
                 return;
             }
 
             service.register(login, password, name, birthDate);
-            req.setAttribute("successMessage", "Регистрация прошла успешно!");
-            req.getRequestDispatcher("/ui/index.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath().concat("/go/index"));
         } catch (Exception e) {
             req.setAttribute("error", "Ошибка регистрации: " + e.getMessage());
-            req.getRequestDispatcher("/ui/error.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/ui/error.jsp").forward(req, resp);
         }
     }
 }

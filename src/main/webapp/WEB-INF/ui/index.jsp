@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>Добро пожаловать в чат =)</h1>
-<a href="ui/signUp.jsp">Регистрация</a><br>
-<a href="ui/signIn.jsp">Вход</a>
+<a href="${pageContext.request.contextPath}/go/signUp">Регистрация</a><br>
+<a href="${pageContext.request.contextPath}/go/signIn">Вход</a>
 </body>
 </html>

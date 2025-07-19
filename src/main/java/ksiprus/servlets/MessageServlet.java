@@ -11,7 +11,7 @@ import ksiprus.service.MessageService;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(urlPatterns = "/ui/message")
+@WebServlet(urlPatterns = "/api/user/message")
 public class MessageServlet extends HttpServlet {
     private final MessageService service = new MessageService();
 
@@ -20,7 +20,7 @@ public class MessageServlet extends HttpServlet {
         User user = (User) req.getSession().getAttribute("user");
         if (user == null) {
             req.setAttribute("error", "Пользователь не авторизован.");
-            req.getRequestDispatcher("/ui/error.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/ui/error.jsp").forward(req, resp);
             return;
         }
 
@@ -28,11 +28,11 @@ public class MessageServlet extends HttpServlet {
             req.setAttribute("messages", service.getMessagesFor(user.getUserId()));
         } catch (SQLException e) {
             req.setAttribute("error", "Ошибка при получении сообщений: " + e.getMessage());
-            req.getRequestDispatcher("/ui/error.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/ui/error.jsp").forward(req, resp);
             return;
         }
 
-        req.getRequestDispatcher("/ui/user/chats.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/ui/user/chats.jsp").forward(req, resp);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class MessageServlet extends HttpServlet {
         User user = (User) req.getSession().getAttribute("user");
         if (user == null) {
             req.setAttribute("error", "Пользователь не авторизован.");
-            req.getRequestDispatcher("/ui/error.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/ui/error.jsp").forward(req, resp);
             return;
         }
 
@@ -49,7 +49,7 @@ public class MessageServlet extends HttpServlet {
 
         if (to == null || to.isEmpty() || text == null || text.isEmpty()) {
             req.setAttribute("error", "Получатель и текст сообщения не могут быть пустыми.");
-            req.getRequestDispatcher("/ui/error.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/ui/error.jsp").forward(req, resp);
             return;
         }
 
@@ -59,14 +59,14 @@ public class MessageServlet extends HttpServlet {
             req.setAttribute("messages", service.getMessagesFor(user.getUserId()));
         } catch (SQLException e) {
             req.setAttribute("error", "Ошибка при отправке сообщения: " + e.getMessage());
-            req.getRequestDispatcher("/ui/error.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/ui/error.jsp").forward(req, resp);
             return;
         } catch (Exception e) {
             req.setAttribute("error", "Неизвестная ошибка: " + e.getMessage());
-            req.getRequestDispatcher("/ui/error.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/ui/error.jsp").forward(req, resp);
             return;
         }
 
-        req.getRequestDispatcher("/ui/user/message.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/ui/user/message.jsp").forward(req, resp);
     }
 }

@@ -10,7 +10,7 @@ import ksiprus.service.UserService;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/ui/login")
+@WebServlet(urlPatterns = "/api/login")
 public class LoginServlet extends HttpServlet {
     private final UserService service = new UserService();
 
@@ -24,13 +24,12 @@ public class LoginServlet extends HttpServlet {
             req.getSession().setAttribute("user", user);
 
             if ("Admin".equals(user.getRole())) {
-                resp.sendRedirect(req.getContextPath().concat("/ui/admin/statistics"));
+                resp.sendRedirect(req.getContextPath().concat("/go/admin/statistics"));
             } else {
-                resp.sendRedirect(req.getContextPath().concat("/ui/message"));
+                resp.sendRedirect(req.getContextPath().concat("/go/user/message"));
             }
         } catch (Exception e) {
-            req.setAttribute("errorMessage", "Ошибка авторизации: " + e.getMessage());
-            req.getRequestDispatcher("/ui/signIn.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath().concat("/go/signIn"));
         }
     }
 }

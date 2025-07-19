@@ -14,7 +14,7 @@
 </head>
 <body>
 <h2>Регистрация пользователя</h2>
-<form method="POST" action="${pageContext.request.contextPath}/ui/user">
+<form method="POST" action="${pageContext.request.contextPath}/api/user">
     Логин: <input type="text" name="login" required><br>
     Пароль: <input type="password" name="password" required><br>
     ФИО: <input type="text" name="name" required><br>

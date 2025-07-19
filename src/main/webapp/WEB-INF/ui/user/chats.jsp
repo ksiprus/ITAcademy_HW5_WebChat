@@ -17,6 +17,6 @@
     <b>${msg.sentAt}</b> — <b>${msg.senderId}</b>: ${msg.text}
   </div>
 </c:forEach>
-<a href="/ui/user/message">Отправить сообщение</a>
+<a href= "${pageContext.request.contextPath}/go/user/message">Отправить сообщение</a>
 </body>
 </html>

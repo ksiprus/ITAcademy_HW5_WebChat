@@ -18,11 +18,11 @@
     <div style="color: red;">${requestScope.error}</div>
 </c:if>
 
-<form method="POST" action="${pageContext.request.contextPath}/ui/user/message">
+<form method="POST" action="${pageContext.request.contextPath}/api/message">
     Кому (логин): <input type="text" name="to" required><br>
     Текст: <textarea name="text" required></textarea><br>
     <input type="submit" value="Отправить">
 </form>
-<a href="${pageContext.request.contextPath}/ui/user/chats">Мои сообщения</a>
+<a href="${pageContext.request.contextPath}/go/user/chats">Мои сообщения</a>
 </body>
 </html>

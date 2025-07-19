@@ -32,7 +32,7 @@
 <p>Это всё что известно.</p>
 
 <p>
-    🔙 <a href="${pageContext.request.contextPath}/ui">Вернуться на главную страницу</a>
+    🔙 <a href="${pageContext.request.contextPath}/go/index">Вернуться на главную страницу</a>
 </p>
 
 </body>

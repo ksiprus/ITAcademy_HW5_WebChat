@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet (urlPatterns = "/ui/admin/statistics")
+@WebServlet (urlPatterns = "/api/admin/statistics")
 public class StatisticsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,6 +25,6 @@ public class StatisticsServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        req.getRequestDispatcher("/ui/admin/statistics.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/ui/admin/statistics.jsp").forward(req, resp);
     }
 }
