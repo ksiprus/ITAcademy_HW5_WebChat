@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import ksiprus.model.User;
+import ksiprus.dto.User;
 import ksiprus.service.UserService;
 
 import java.io.IOException;

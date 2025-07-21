@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import ksiprus.dto.UserDto;
+import ksiprus.dao.UserDao;
 import ksiprus.service.UserService;
 
 import java.io.IOException;
@@ -22,10 +22,10 @@ public class UserRegistrationServlet extends HttpServlet {
         String birthDate = req.getParameter("birthDate");
 
         try {
-            UserDto userDto = new UserDto();
+            UserDao userDao = new UserDao();
 
 
-            if (userDto.existsByLogin(login)) {
+            if (userDao.existsByLogin(login)) {
                 resp.sendRedirect(req.getContextPath().concat("/go/signUp"));
                 return;
             }

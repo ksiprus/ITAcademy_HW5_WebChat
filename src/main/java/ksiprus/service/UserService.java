@@ -1,16 +1,16 @@
 package ksiprus.service;
 
-import ksiprus.dto.UserDto;
-import ksiprus.model.User;
+import ksiprus.dao.UserDao;
+import ksiprus.dto.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class UserService {
-    private final UserDto userDto = new UserDto();
+    private final UserDao userDao = new UserDao();
 
     public void register(String login, String password, String name, String birthDate) throws Exception {
-        if (userDto.findByLogin(login) != null) {
+        if (userDao.findByLogin(login) != null) {
             throw new Exception("Логин уже существует!");
         }
 
@@ -22,12 +22,12 @@ public class UserService {
                 .regDate(LocalDateTime.now())
                 .role("User")
                 .build();
-        userDto.save(user);
+        userDao.save(user);
 
     }
 
     public User login(String login, String password) throws Exception {
-        User user = userDto.findByLogin(login);
+        User user = userDao.findByLogin(login);
         if (user == null || !user.getPassword().equals(password)){
             throw new Exception("Неверный логин или пароль!");
 

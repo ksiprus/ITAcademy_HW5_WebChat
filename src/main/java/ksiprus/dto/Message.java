@@ -1,4 +1,4 @@
-package ksiprus.model;
+package ksiprus.dto;
 
 import java.time.LocalDateTime;
 

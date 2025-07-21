@@ -1,13 +1,13 @@
-package ksiprus.dto;
+package ksiprus.dao;
 
-import ksiprus.model.User;
+import ksiprus.dto.User;
 import ksiprus.utils.DataSourceSingleton;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDto {
+public class UserDao {
     public void save(User user) throws SQLException {
         String sql = "INSERT INTO webchat.users (login, password, name, birth_date, reg_date, role) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DataSourceSingleton.getInstance().getConnection();

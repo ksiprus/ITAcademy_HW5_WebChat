@@ -1,9 +1,9 @@
 package ksiprus.service;
 
-import ksiprus.dto.MessageDto;
-import ksiprus.dto.UserDto;
-import ksiprus.model.Message;
-import ksiprus.model.User;
+import ksiprus.dao.MessageDao;
+import ksiprus.dao.UserDao;
+import ksiprus.dto.Message;
+import ksiprus.dto.User;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -11,15 +11,15 @@ import java.util.List;
 
 public class MessageService {
 
-    private final MessageDto messageRepo = new MessageDto();
-    private final UserDto userDto = new UserDto();
+    private final MessageDao messageRepo = new MessageDao();
+    private final UserDao userDao = new UserDao();
 
     // Отправить сообщение от пользователя к другому пользователю по логинам
     public void sendMessage(String fromLogin, String toLogin, String text) throws Exception {
         // Найти отправителя
-        User sender = userDto.findByLogin(fromLogin);
+        User sender = userDao.findByLogin(fromLogin);
         // Найти получателя
-        User receiver = userDto.findByLogin(toLogin);
+        User receiver = userDao.findByLogin(toLogin);
 
         if (sender == null) {
             throw new Exception("Отправитель не найден!");

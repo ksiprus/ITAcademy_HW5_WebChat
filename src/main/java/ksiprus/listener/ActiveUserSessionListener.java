@@ -3,8 +3,8 @@ package ksiprus.listener;
 
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.*;
-import ksiprus.dto.MessageDto;
-import ksiprus.dto.UserDto;
+import ksiprus.dao.MessageDao;
+import ksiprus.dao.UserDao;
 
 import java.sql.SQLException;
 import java.util.Collections;
@@ -49,11 +49,11 @@ public class ActiveUserSessionListener implements HttpSessionAttributeListener, 
 
 
     public static int getUserCount() throws SQLException {
-        return UserDto.count();
+        return UserDao.count();
     }
 
 
     public static int getMessageCount() throws SQLException {
-        return MessageDto.countMessages();
+        return MessageDao.countMessages();
     }
 }
