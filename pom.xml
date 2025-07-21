@@ -12,7 +12,11 @@
         <maven.compiler.target>21</maven.compiler.target>
         <maven.compiler.source>21</maven.compiler.source>
         <junit.version>5.11.0</junit.version>
+        <maven.tomcat.uri>http://localhost:8080/manager/text</maven.tomcat.uri>
+        <maven.tomcat.server>TomcatServer</maven.tomcat.server>
+        <maven.tomcat.path>/${project.build.finalName)</maven.tomcat.path>
     </properties>
+
     <dependencies>
         <!-- PostgreSQL JDBC Driver -->
         <dependency>
@@ -50,6 +54,7 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
+
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -64,8 +69,8 @@
                 <configuration>
                     <url>http://localhost:8080/manager/text</url>
                     <server>TomcatServer</server>
-                    <username>admin</username>
-                    <password>admin</password>
+                    <username>tomcat_script</username>
+                    <password>tomcat_script</password>
                     <path>/${project.build.finalName}</path>
                 </configuration>
             </plugin>
