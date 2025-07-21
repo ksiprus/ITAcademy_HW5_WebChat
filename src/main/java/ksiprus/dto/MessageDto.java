@@ -1,4 +1,4 @@
-package ksiprus.dao;
+package ksiprus.dto;
 
 import ksiprus.model.Message;
 import ksiprus.utils.DataSourceSingleton;
@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageDao {
+public class MessageDto {
 
     // Сохранить сообщение в базе данных
     public void saveMessage(Message message) throws SQLException {

@@ -21,6 +21,14 @@ public class LoginServlet extends HttpServlet {
 
         try {
             User user = service.login(login, password);
+
+            // Проверка на наличие пользователя и корректность пароля
+            if (user == null || password == null) {
+                req.setAttribute("loginError", "Неверный логин или пароль.");
+                req.getRequestDispatcher("/WEB-INF/ui/LoginError.jsp").forward(req, resp);
+                return;
+            }
+
             req.getSession().setAttribute("user", user);
 
             if ("Admin".equals(user.getRole())) {
