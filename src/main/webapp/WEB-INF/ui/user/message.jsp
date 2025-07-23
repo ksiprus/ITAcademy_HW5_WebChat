@@ -23,6 +23,7 @@
     Текст: <textarea name="text" required></textarea><br>
     <input type="submit" value="Отправить">
 </form>
-<a href="${pageContext.request.contextPath}/go/user/chats">Мои сообщения</a>
+<a href="${pageContext.request.contextPath}/go/user/chats">Мои сообщения</a><br>
+<a href="${pageContext.request.contextPath}/go/signIn">Выйти из аккаунта</a>
 </body>
 </html>
