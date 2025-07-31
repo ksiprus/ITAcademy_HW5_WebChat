@@ -1,0 +1,20 @@
+version: '3.8'  # Убедитесь, что версия соответствует требованиям вашего проекта
+
+services:
+  pg_database:
+    image: postgres:17.5-alpine3.22
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: postgres
+      POSTGRES_DB: webchat
+    ports:
+      - 9999:5432  # Перенаправляем порт 5432 контейнера на порт 9999 хоста
+
+  my-webchat-app:
+    build: .
+    image: my-webchat-app:latest
+    ports:
+      - 80:8080  # Перенаправляем порт 8080 контейнера на порт 80 хоста
+    depends_on:
+      - pg_database  # Гарантирует, что pg_database запускается перед приложением
