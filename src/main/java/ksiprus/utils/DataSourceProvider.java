@@ -8,10 +8,9 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DataSourceProvider {
-    private static DataSourceProvider instance; // Экземпляр одиночки
+    private static DataSourceProvider instance;
     private static ComboPooledDataSource dataSource;
 
-    // Приватный конструктор
     private DataSourceProvider() {
         try {
             Properties props = new Properties();
@@ -27,7 +26,6 @@ public class DataSourceProvider {
         }
     }
 
-    // Метод для получения единственного экземпляра
     public static DataSourceProvider getInstance() {
         if (instance == null) {
             synchronized (DataSourceProvider.class) { // Синхронизация для потокобезопасности
@@ -39,12 +37,11 @@ public class DataSourceProvider {
         return instance;
     }
 
-    // Метод для получения DataSource
+
     public static DataSource getDataSource() {
         return dataSource;
     }
 
-    // Метод для получения соединения
     public Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }

@@ -12,6 +12,8 @@ public class User {
     private LocalDateTime regDate;
     private String role; // "User" или "Admin"
 
+    public User() {
+    }
 
     private User(Builder builder) {
         this.userId = builder.id;

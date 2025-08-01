@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ksiprus.service.api.IUserService;
 import ksiprus.storage.api.IUserStorage;
 import ksiprus.storage.UserStorageSQL;
 import ksiprus.service.UserService;
@@ -13,7 +14,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/api/user")
 public class UserRegistrationServlet extends HttpServlet {
-    private final UserService service = new UserService();
+    private final IUserService service = new UserService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

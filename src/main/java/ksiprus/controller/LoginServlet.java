@@ -6,13 +6,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import ksiprus.core.dto.User;
+import ksiprus.service.api.IUserService;
 import ksiprus.service.UserService;
 
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/api/login")
 public class LoginServlet extends HttpServlet {
-    private final UserService service = new UserService();
+    private final IUserService service = new UserService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
